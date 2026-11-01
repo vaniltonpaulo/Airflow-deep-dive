@@ -1,5 +1,5 @@
 
-#step 1
+#SECTION 2 - Step 1 
 import json
 import os
 import random
@@ -21,15 +21,9 @@ def order_processing_pipeline():
     @task()
     def extract():
         """Extract order data (naive XCom approach for initial version)."""
-        orders = {
-            "1001": 301.27,
-            "1002": 433.21,
-            "1003": 502.22,
-            "1004": 125.89,
-            "1005": 678.50,
-        }
+        orders = {str(i): round(random.uniform(10, 500), 2) for i in range(10000)}
         return orders
-
+#SECTION 2 - Step 2
     @task(multiple_outputs=True)
     def transform(orders: dict):
         """Compute order summary statistics."""
